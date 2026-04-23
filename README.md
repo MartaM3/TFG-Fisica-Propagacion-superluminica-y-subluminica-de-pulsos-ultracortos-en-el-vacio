@@ -1,6 +1,6 @@
 # Anexos del TFG
 
-Repositorio que contiene material complementario del Trabajo de Fin de Grado en Física, incluyendo código de generación de figuras y documentos técnicos desarrollados como apoyo a la memoria principal.
+Repositorio que contiene material complementario de mi Trabajo de Fin de Grado en Física: Propagación superlumínica y sublumínica de pulsos ultracortos en el vacío. Incluyendo código de generación de figuras y documentos técnicos desarrollados como apoyo a la memoria principal.
 
 ## Contenido del repositorio
 
