@@ -1,16 +1,9 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Apr 22 14:47:13 2026
 
-@author: HOME
-"""
 
 import numpy as np
 import matplotlib.pyplot as plt
 
-# ============================================================
-# Parámetros del espectro discreto
-# ============================================================
+#Parámetros
 N = 21
 omega = np.linspace(20, 50, N)   # 21 frecuencias entre 20 y 50
 omega0 = 35.0                    # frecuencia central
@@ -23,13 +16,11 @@ A = A / A.max()
 # Fases espectrales
 phi_const = np.zeros_like(omega)
 
-# IGUAL que en la figura anterior
+#parámetros
 beta2 = 0.08
 phi_quad = beta2 * (omega - omega0)**2
 
-# ============================================================
-# Funciones
-# ============================================================
+
 def campo_complejo(t, omega, A, phi):
     return np.sum(
         A[:, None] * np.exp(1j * (omega[:, None] * t[None, :] + phi[:, None])),
@@ -98,16 +89,12 @@ def dibujar_periodo_desde_minimos(ax, t, y, i1, i2, etiqueta,
         fontsize=12
     )
 
-# ============================================================
-# Mallas temporales
-# ============================================================
+#Mallado temporal
 t_comp = np.linspace(-0.8, 0.8, 2500)     # panel de componentes individuales
 t_camp = np.linspace(-2.0, 2.0, 5000)     # campo + envolvente
 t_int  = np.linspace(-16.5, 16.5, 7000)   # intensidad en ventana grande
 
-# ============================================================
-# Cálculos: fase constante
-# ============================================================
+#Fase constante
 E_const_comp = campo_real(t_comp, omega, A, phi_const)
 E_const      = campo_real(t_camp, omega, A, phi_const)
 Env_const    = envolvente(t_camp, omega, A, phi_const)
@@ -117,9 +104,7 @@ E_const_n   = E_const / Env_const.max()
 Env_const_n = Env_const / Env_const.max()
 I_const_n   = I_const / I_const.max()
 
-# ============================================================
-# Cálculos: fase cuadrática
-# ============================================================
+#Fase cuadrática
 E_quad_comp = campo_real(t_comp, omega, A, phi_quad)
 E_quad      = campo_real(t_camp, omega, A, phi_quad)
 Env_quad    = envolvente(t_camp, omega, A, phi_quad)
@@ -129,9 +114,7 @@ E_quad_n   = E_quad / Env_quad.max()
 Env_quad_n = Env_quad / Env_quad.max()
 I_quad_n   = I_quad / I_quad.max()
 
-# ============================================================
-# Estilo global
-# ============================================================
+
 plt.rcParams.update({
     "font.size": 12,
     "axes.titlesize": 17,
@@ -144,9 +127,7 @@ plt.rcParams.update({
 fig, ax = plt.subplots(5, 2, figsize=(14, 17))
 fig.suptitle("Síntesis temporal por suma discreta de frecuencias", fontsize=24, y=0.985)
 
-# ============================================================
-# Columna izquierda: fase espectral constante
-# ============================================================
+#Columna izquierda
 
 # 1) Amplitudes
 markerline, stemlines, baseline = ax[0, 0].stem(
@@ -196,9 +177,7 @@ ax[4, 0].set_xlim(-16.5, 16.5)
 ax[4, 0].set_ylim(-0.02, 1.05)
 ax[4, 0].grid(True, alpha=0.3)
 
-# ============================================================
-# Columna derecha: fase espectral cuadrática
-# ============================================================
+#Columna derecha
 
 # 1) Amplitudes
 markerline, stemlines, baseline = ax[0, 1].stem(
@@ -240,10 +219,7 @@ ax[3, 1].set_ylim(-1.05, 1.05)
 ax[3, 1].legend(loc="upper right")
 ax[3, 1].grid(True, alpha=0.3)
 
-# ============================================================
-# Elegimos un periodo local a la izquierda y otro a la derecha
-# MEDIDOS DE MÍNIMO A MÍNIMO
-# ============================================================
+#Medimos para colocar las flechas
 i1L, i2L = seleccionar_par_de_minimos(
     t_camp, E_quad_n, t_ref=-1.15, ventana=(-1.75, -0.35)
 )
@@ -280,12 +256,7 @@ ax[4, 1].set_xlim(-16.5, 16.5)
 ax[4, 1].set_ylim(-0.02, 1.05)
 ax[4, 1].grid(True, alpha=0.3)
 
-# ============================================================
-# Ajuste final
-# ============================================================
+
 plt.tight_layout(rect=[0, 0, 1, 0.975])
 plt.show()
 
-# Para guardar:
-# fig.savefig("sintesis_temporal_por_suma_discreta_de_frecuencias_con_Tmin_Tmax.png",
-#             dpi=300, bbox_inches="tight")
