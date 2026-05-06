@@ -216,6 +216,16 @@ ax[3, 1].set_ylabel("Amplitud normalizada")
 ax[3, 1].set_xlabel(r"$t$")
 ax[3, 1].set_xlim(-2.2, 2.2)
 ax[3, 1].set_ylim(-1.05, 1.05)
+from matplotlib.ticker import FuncFormatter
+
+
+formato_y_03 = FuncFormatter(lambda y, pos: f"{0.3*y:g}".replace(".", ","))
+
+
+formato_y_009 = FuncFormatter(lambda y, pos: f"{0.09*y:g}".replace(".", ","))
+
+ax[3, 1].yaxis.set_major_formatter(formato_y_03)
+ax[4, 1].yaxis.set_major_formatter(formato_y_009)
 ax[3, 1].legend(loc="upper right")
 ax[3, 1].grid(True, alpha=0.3)
 
