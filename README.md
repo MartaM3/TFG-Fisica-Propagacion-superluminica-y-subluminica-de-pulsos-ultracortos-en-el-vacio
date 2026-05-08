@@ -5,6 +5,6 @@ Repositorio que contiene material complementario de mi Trabajo de Fin de Grado e
 
 Este repositorio reúne dos  materiales:
 
-- **Código en Python** para la generación de figuras empleadas en el TFG.
+- **Códigos en Python** para la generación de figuras empleadas en el TFG.
 - **Documento técnico** con desarrollos y notas complementarias que amplían algunos resultados discutidos en la memoria.
 
